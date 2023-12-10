@@ -396,3 +396,92 @@ section.boxes-container {
     transform: scale(1.1);
 }
 
+/* OFFERS */
+
+#oferetatt {
+    max-width: 1200px;
+    margin: 8px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    display:  flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  .hotel-box {
+    transition: transform 0.3s ease;
+    width: 300px;
+    margin: 20px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  .hotel-box img {
+    max-width: 100%;
+    border-radius: 5px;
+    height: 280px;
+  }
+
+  .hotel-box:hover {
+    transform: scale(1.05);
+  }
+  
+  .hotel-info {
+    padding: 15px;
+  }
+  
+  .hotel-title {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .hotel-description {
+    color: #666;
+    margin-top: 10px;
+    color: #666;
+  }
+  .hotel-box {
+    position: relative;
+    height: 710px;
+  }
+  
+  .book-now-button {
+    position: absolute;
+    bottom: 10px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #bfbc27;
+    color: black;
+    border: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .book-now-button:hover {
+    background-color: #45a049;
+  }
+  .offers-descrition{
+    text-align: center;
+    font-weight: bold;
+    text-decoration: wavy;
+    color: #00538C;
+  }
+.shkrim h1{
+    text-align: center;
+    color: #5D76A9;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-weight: 900;
+    font-size: 60px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+
