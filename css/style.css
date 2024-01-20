@@ -297,6 +297,7 @@ section {
     background-color:#f5f5f5;
     border-radius :5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
 }
 
 ul {
@@ -781,8 +782,126 @@ section.boxes-container {
     font-size: 80px;
 }
 
+/*media screen */
+/* Responsive Design for Mobile (iPhone) */
+@media only screen and (max-width: 767px) {
+    .navbar {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+    }
+
+    .logo img {
+        width: 80px;
+        height: 60px;
+    }
+
+    .background-slider {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .background1, .background2 {
+        width: 100%;
+        border-radius: 0;
+        margin: 20px 0;
+    }
+    .background-text {
+        position: static;
+        width: 90%;
+        margin: 10px auto;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .background-text2 {
+        background: linear-gradient(135deg, #cc0000, #FAF0E6 10%, #FAF0E6 90%, #cc0000);
+    }
+}
+
+    
+    .main-foto-text {
+        flex-direction: column;
+        align-items: center;
+        margin: 50px 0;
+    }
+
+    .main-foto-text img {
+        margin-left: 0;
+    }
+
+    .research {
+        padding-top: 100px;
+    }
+
+    .research img {
+        padding: 20px;
+    }
+}
+.research {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.research img {
+    width: 100%;
+    max-width: 300px; /* Ose dimensione tjera sipas preferencave tuaja */
+}
+
+.research-text {
+    padding: 20px;
+}
 
 
 
 
+/*aboout us*/
 
+@media only screen and (max-width: 768px) {
+    section.boxes-container {
+        flex-direction: column; /* Change to a column layout on smaller screens */
+        align-items: center;
+    }
+
+    .box {
+        width: 100%; /* Make the boxes take full width on smaller screens */
+        max-width: none; /* Remove the maximum width on smaller screens */
+    }
+}
+
+/* Media query for iPad (768x1024 pixels in portrait mode) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    section.boxes-container {
+        justify-content: space-around;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    section.boxes-container {
+        justify-content: space-around;
+    }
+}
+
+/* Media query for larger screens like iPad Pro */
+@media only screen and (min-width: 1025px) {
+    section.boxes-container {
+        justify-content: space-around;
+    }
+
+    /* Adjust margin or padding to eliminate white space below footer */
+    section {
+        margin-bottom: 0;
+    }
+}
