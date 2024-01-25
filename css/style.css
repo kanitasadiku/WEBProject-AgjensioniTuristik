@@ -782,103 +782,230 @@ section.boxes-container {
     color: #5D76A9;
     font-size: 80px;
 }
-
-/*media screen */
-/* Responsive Design for Mobile (iPhone) */
-@media only screen and (max-width: 767px) {
+/* faqja main - Pajisje të vogla (mobile) */
+@media only screen and (min-width:244px ) and (max-width: 767px) {
     .navbar {
         height: auto;
         flex-direction: column;
-        align-items: center;
+        text-align: center;
     }
 
     .navbar ul {
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    .navbar ul li {
-        margin: 10px 0;
     }
 
     .logo img {
         width: 80px;
-        height: 60px;
+        height: auto;
     }
 
     .background-slider {
         flex-direction: column;
-        align-items: center;
     }
 
-    .background1, .background2 {
+    .background1,
+    .background2 {
         width: 100%;
         border-radius: 0;
         margin: 20px 0;
     }
+
     .background-text {
-        position: static;
-        width: 90%;
-        margin: 10px auto;
+        left: 0;
+        top: 10%;
+        width: 100%;
         text-align: center;
-        padding: 20px;
     }
 
-    .background-text2 {
-        background: linear-gradient(135deg, #cc0000, #FAF0E6 10%, #FAF0E6 90%, #cc0000);
-    }
-}
-
-    
     .main-foto-text {
         flex-direction: column;
-        align-items: center;
         margin: 50px 0;
     }
 
     .main-foto-text img {
         margin-left: 0;
+        width: 100%;
+    }
+   
+    
+        .research {
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .research-image {
+            width: 80%;
+            margin-bottom: 10px; 
+        }
+    
+        .research img {
+            width: 100%;
+        }
+    
+        .research-text {
+            text-align: center;
+        }
+        .research-text {
+            text-align: center;
+            max-width: 80%; 
+            margin: 0 auto; 
+        }
+    }
+    
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .navbar {
+        height: auto; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
     }
 
-    .research {
-        padding-top: 100px;
+    .logo img {
+        width: 120px; 
+
+    .nav-links {
+        margin-top: 10px; 
     }
 
-    .research img {
+    .nav-links li {
+        margin-bottom: 10px; 
+    }
+
+    .background1,
+    .background2 {
+        width: 80%; 
+        margin: 20px auto; 
+    }
+
+    .background-text {
+        left: 10%;
+        top: 20%;
+        width: 80%;
+        text-align: left;
+    }
+
+    .main-foto-text {
+        flex-direction: column; 
+        align-items: center;
         padding: 20px;
     }
+
+    .main-foto-text img {
+        max-width: 100%; 
+    }
+
+    .main-foto-text-text {
+        max-width: 80%; 
+        text-align: center;
+        margin-top: 20px; 
+    }
 }
-.research {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    
+
+/* Pajisje të mëdha */
+@media only screen and (min-width: 1024px) {
+    .navbar {
+        height: 100px;
+    }
+
+    .logo img {
+        width: 120px;
+        height: 90px;
+    }
+
+    .background-slider {
+        min-width: 100%;
+    }
+
+    .background1,
+    .background2 {
+        width: 50%;
+        margin: 50px;
+    }
+
+    .background-text {
+        left: 10%;
+        top: 20%;
+        width: 500px;
+        text-align: left;
+    }
+
+    .main-foto-text img {
+        margin-left: 40px;
+        max-width: 400px;
+    }
 }
 
-.research img {
-    width: 100%;
-    max-width: 300px; /* Ose dimensione tjera sipas preferencave tuaja */
+/*trending*/
+@media screen and (max-width: 768px) {
+    /* Stilizimet për pajisjet me ekran me gjerësi deri në 768px */
+    #courses .courses {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        justify-content: center; /* Pozicionon kartat në mes të faqes */
+    }
+
+    .title h2 {
+        font-size: 40px; 
+    }
+
+    .title p {
+        font-size: 24px; 
+    }
+
+    #courses .courses .card .location span {
+        font-size: 13px; 
+    }
 }
 
-.research-text {
-    padding: 20px;
+
+
+@media screen and (min-width: 769px)  and (max-width: 1200px) {
+    /* Stilizimet për pajisjet mesatare */
+    #courses .courses {
+        grid-template-columns: repeat(2, 1fr); 
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    #courses .courses .card {
+        width: calc(50% - 20px); 
+        margin: 0 10px; 
+    }
+
+    #courses .courses .card .location span {
+        font-size: 16px; 
+    }
 }
+  /* Media Query për pajisjet e mëdha */
+@media screen and (min-width: 1200px) {
+    #courses .courses {
+        grid-template-columns: repeat(3, 1fr); 
+        margin-left: 100px;
+        margin-right: 100px;
+    }
 
+    #courses .courses .card {
+        width: calc(33.33% - 20px); 
+        margin: 0 10px; 
+    }
 
-
+    #courses .courses .card .location span {
+        font-size: 13px;
+    }
+}
 
 /*aboout us*/
 
 @media only screen and (max-width: 768px) {
     section.boxes-container {
-        flex-direction: column; /* Change to a column layout on smaller screens */
+        flex-direction: column; 
         align-items: center;
     }
 
     .box {
-        width: 100%; /* Make the boxes take full width on smaller screens */
+        width: 100%; 
         max-width: none; /* Remove the maximum width on smaller screens */
     }
 }
@@ -895,13 +1022,11 @@ section.boxes-container {
     }
 }
 
-/* Media query for larger screens like iPad Pro */
+/* Media query for larger screens */
 @media only screen and (min-width: 1025px) {
     section.boxes-container {
         justify-content: space-around;
     }
-
-    /* Adjust margin or padding to eliminate white space below footer */
     section {
         margin-bottom: 0;
     }
