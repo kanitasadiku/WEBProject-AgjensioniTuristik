@@ -829,28 +829,28 @@ section.boxes-container {
     }
    
     
-        .research {
+    .research {
             flex-direction: column;
             align-items: center;
-        }
+    }
     
-        .research-image {
+    .research-image {
             width: 80%;
             margin-bottom: 10px; 
-        }
+    }
     
-        .research img {
+    .research img {
             width: 100%;
-        }
+    }
     
-        .research-text {
+    .research-text {
             text-align: center;
-        }
-        .research-text {
+    }
+    .research-text {
             text-align: center;
             max-width: 80%; 
             margin: 0 auto; 
-        }
+    }
     }
     
     @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -864,6 +864,7 @@ section.boxes-container {
 
     .logo img {
         width: 120px; 
+    }
 
     .nav-links {
         margin-top: 10px; 
@@ -1029,5 +1030,90 @@ section.boxes-container {
     }
     section {
         margin-bottom: 0;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .container1{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card1 img{
+        max-width: 75px;
+    }
+
+    .container_left h1{
+        font-size: 2.5rem;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .container1{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card1 img{
+        max-width: 100px;
+    }
+
+    .container_left h1{
+        font-size: 3rem;
+    }
+}
+/**/
+
+@media only screen and (min-width: 600px) {
+    .container1{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card1 img{
+        max-width: 75px;
+    }
+
+    .container_left h1{
+        font-size: 2.5rem;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .container1{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card1 img{
+        max-width: 100px;
+    }
+
+    .container_left h1{
+        font-size: 3rem;
+    }
+}
+
+/* Media query për pajisjet me ekrane të vogla (p.sh., telefona) */
+@media only screen and (max-width: 600px) {
+    .container1 {
+        grid-template-columns: 1fr; /* Një kolonë për pajisjet me ekrane të vogla */
+    }
+
+    .container_left h1 {
+        font-size: 2rem; /* Ul fontin e titullit për pajisjet me ekrane të vogla */
+    }
+
+    .card1 img {
+        max-width: 50px; /* Ul madhësinë e imazheve për pajisjet me ekrane të vogla */
+    }
+}
+@media only screen and (min-width: 821px) and (max-width: 1024px) {
+    .container1 {
+        grid-template-columns: repeat(2, 1fr); /* Dy kolona për pajisjet me ekran të madh */
+    }
+
+    .container_left h1 {
+        font-size: 2.5rem; /* Madhësia e titullit për pajisjet me ekran të madh */
+    }
+
+    .card1 img {
+        max-width: 75px; /* Madhësia e imazheve për pajisjet me ekran të madh */
     }
 }
