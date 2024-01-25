@@ -308,6 +308,7 @@ li {
     margin-bottom: 10px;
 }
 /*box1*/
+
 section.boxes-container {
     display: flex;
     flex-direction: row; 
@@ -326,8 +327,6 @@ section.boxes-container {
     height:auto; 
     object-fit: cover; 
 }
-
-
 
 /* TRENDING */
 .title {
@@ -695,6 +694,8 @@ section.boxes-container {
     background-color: #9f8170;
     color: black;
 }
+@media only screen and (max-width: 768px) {
+    
 
 /* REVIEW */
 :root{
