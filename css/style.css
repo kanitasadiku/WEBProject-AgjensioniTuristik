@@ -694,7 +694,7 @@ section.boxes-container {
     background-color: #9f8170;
     color: black;
 }
-@media only screen and (max-width: 768px) {
+
     
 
 /* REVIEW */
@@ -782,6 +782,7 @@ section.boxes-container {
     color: #5D76A9;
     font-size: 80px;
 }
+
 /* faqja main - Pajisje të vogla (mobile) */
 @media only screen and (min-width:244px ) and (max-width: 767px) {
     .navbar {
@@ -1032,7 +1033,7 @@ section.boxes-container {
         margin-bottom: 0;
     }
 }
-
+/*
 @media only screen and (min-width: 600px) {
     .container1{
         grid-template-columns: repeat(2, 1fr);
@@ -1060,7 +1061,8 @@ section.boxes-container {
         font-size: 3rem;
     }
 }
-/**/
+*/
+/*
 
 @media only screen and (min-width: 600px) {
     .container1{
@@ -1088,32 +1090,33 @@ section.boxes-container {
     .container_left h1{
         font-size: 3rem;
     }
-}
+}*/
 
 /* Media query për pajisjet me ekrane të vogla (p.sh., telefona) */
-@media only screen and (max-width: 600px) {
+/*@media only screen and (max-width: 600px) {
     .container1 {
-        grid-template-columns: 1fr; /* Një kolonë për pajisjet me ekrane të vogla */
+        grid-template-columns: 1fr; 
     }
 
     .container_left h1 {
-        font-size: 2rem; /* Ul fontin e titullit për pajisjet me ekrane të vogla */
+        font-size: 2rem; 
     }
 
     .card1 img {
-        max-width: 50px; /* Ul madhësinë e imazheve për pajisjet me ekrane të vogla */
+        max-width: 50px; 
     }
 }
 @media only screen and (min-width: 821px) and (max-width: 1024px) {
     .container1 {
-        grid-template-columns: repeat(2, 1fr); /* Dy kolona për pajisjet me ekran të madh */
+        grid-template-columns: repeat(2, 1fr); 
     }
 
     .container_left h1 {
-        font-size: 2.5rem; /* Madhësia e titullit për pajisjet me ekran të madh */
+        font-size: 2.5rem; 
     }
 
     .card1 img {
-        max-width: 75px; /* Madhësia e imazheve për pajisjet me ekran të madh */
+        max-width: 75px; 
     }
 }
+*/

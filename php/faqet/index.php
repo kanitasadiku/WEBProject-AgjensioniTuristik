@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo"><a href="index.html"><img src="../img/logo.jpg" alt=""></a></div>
+        <div class="logo"><a href="index.php"><img src="../img/logo.jpg" alt=""></a></div>
         <ul class="nav-links">
             <li><a href="about-us.html"> About us </a></li>
             <li><a href="trending.html"> Trending </a></li>
