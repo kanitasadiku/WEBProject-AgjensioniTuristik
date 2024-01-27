@@ -941,11 +941,11 @@ section.boxes-container {
 }
 
 /*trending*/
-@media screen and (max-width: 768px) {
-    /* Stilizimet për pajisjet me ekran me gjerësi deri në 768px */
+/*@media screen and (max-width: 768px) {
+    
     #courses .courses {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        justify-content: center; /* Pozicionon kartat në mes të faqes */
+        justify-content: center; 
     }
 
     .title h2 {
@@ -964,7 +964,7 @@ section.boxes-container {
 
 
 @media screen and (min-width: 769px)  and (max-width: 1200px) {
-    /* Stilizimet për pajisjet mesatare */
+
     #courses .courses {
         grid-template-columns: repeat(2, 1fr); 
         margin-left: 50px;
@@ -980,7 +980,8 @@ section.boxes-container {
         font-size: 16px; 
     }
 }
-  /* Media Query për pajisjet e mëdha */
+
+  
 @media screen and (min-width: 1200px) {
     #courses .courses {
         grid-template-columns: repeat(3, 1fr); 
@@ -997,6 +998,7 @@ section.boxes-container {
         font-size: 13px;
     }
 }
+*/
 
 /*aboout us*/
 
