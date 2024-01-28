@@ -1,6 +1,6 @@
 <?php
 
-class DatabaseConenction{
+class DatabaseConnection{
     private $server="localhost";
     private $username="root";
     private $password="";
@@ -19,6 +19,14 @@ class DatabaseConenction{
         }
 
 
+    }
+    public function getConnection() {
+        return $this->conn;
+    }
+
+    // Metoda për të mbyllur lidhjen
+    public function closeConnection() {
+        $this->conn = null;
     }
 }
 

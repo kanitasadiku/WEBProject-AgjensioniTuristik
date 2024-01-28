@@ -1,6 +1,61 @@
+<?php 
+include_once '../database/databaseConnection.php';
+
+// Klasa për të manipuluar të dhënat e hoteleve
+class HotelRepository{
+    private $connection;
+
+    function __construct(){
+        $conn = new DatabaseConnection;
+        $this->connection = $conn->startConnection();
+    }
+
+    function getAllHotels(){
+        $conn = $this->connection;
+
+        $sql = "SELECT * FROM hotelet";
+
+        $statement = $conn->query($sql);
+        $hotels = $statement->fetchAll();
+
+        return $hotels;
+    }
+}
+
+
+$hotelRepository = new HotelRepository;
+
+$hotels = $hotelRepository->getAllHotels();
+?>
+
 <?php include 'header.php' ?>
 
-     <div class="shkrim">
+<div class="shkrim">
+    <h1>Ofertat eksluzive!</h1>
+</div>
+
+<section id="oferetatt">
+    <?php foreach ($hotels as $hotel): ?>
+        <div class="hotel-box">
+            <img src="<?php echo $hotel['imazhi']; ?>" alt="<?php echo $hotel['emri']; ?>">
+            <div class="hotel-info">
+                <div class="hotel-title"><?php echo $hotel['emri']; ?></div>
+                <div class="hotel-description"><?php echo $hotel['pershkrimi']; ?></div>
+                <div class="offers-descrition">- Ofertat -</div>
+                <p><?php echo $hotel['oferta1']; ?></p>
+                <p><?php echo $hotel['oferta2']; ?></p>
+                <p><?php echo $hotel['oferta3']; ?></p>
+                <a href="booking.html" target="_blank">
+                    <button class="book-now-button">Book Now</button>
+                </a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</section>
+
+<?php include 'footer.php' ?>
+
+     <!-- <div class="shkrim">
       <h1>Ofertat eksluzive!</h1>
      </div>
   <section id="oferetatt">
@@ -336,5 +391,5 @@
               </div>
             </section>
         
-            <?php include 'footer.php' ?>
-  
+          
+   -->
