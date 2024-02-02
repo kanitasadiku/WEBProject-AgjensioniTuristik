@@ -21,7 +21,7 @@ class DatabaseConnection{
 
     }
     public function getConnection() {
-        return $this->conn;
+        return  $this->conn;
     }
 
     // Metoda për të mbyllur lidhjen

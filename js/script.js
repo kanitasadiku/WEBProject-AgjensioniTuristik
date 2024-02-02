@@ -39,3 +39,26 @@ function showSlide() {
   slides[slideDots-1].style.display = "block";
   setTimeout(showSlide, 3000);
 }
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const form = document.getElementById('bookingForm');
+
+//   form.addEventListener('submit', function (event) {
+//       event.preventDefault(); // Parandalon paraqitjen e formës
+
+//       const placeInput = document.getElementById('place');
+//       const guestsInput = document.getElementById('guests');
+//       const arrivalInput = document.getElementById('arrival');
+//       const leavingInput = document.getElementById('leaving');
+
+//       if (placeInput.value === '' || guestsInput.value === '' || arrivalInput.value === '' || leavingInput.value === '') {
+//           alert('Ju lutem plotësoni të gjitha fushat!');
+//           return false;
+//       }
+
+//       // Nëse të gjitha fushat janë të plotësuar, dërgo formën
+//       form.submit();
+//   });
+// });
+

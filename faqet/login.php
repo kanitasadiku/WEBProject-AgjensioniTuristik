@@ -1,37 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
-    <link rel="icon" href="../img/icon.png" type="image/icon">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="https://kit.fontawesome.com/7be85ed243.js"></script>
+<?php include 'header.php' ?>
 <body>
  <div class="login-body">
             <section class="login">
                 <div class="login-box">
-                    <form action="" method="get" onsubmit="return valido()">
+                     <form class="login" name="loginForm" onsubmit="return valido()" method="POST" action="loginconnect.php">
                     <div class="login-box-inside">
                         <h2>Log In</h2>
-                        <input type="email" class="field" id="email" placeholder="Your email">
+                        <input id="email" type="email" class="field" placeholder="Your Email" name="email">
                         <div class="error-message" id="emailError"></div>
-
-                        <input type="password" class="field" id="password" placeholder="Your Password">
+                        <input id="password" type="password"  class="field" placeholder="Password" name="password">
                         <div class="error-message" id="passwordError"></div>
-
                         <button class="login-button">Log In</button>
-                    
-                        <a href="signup.php">Don't Have An Account? Sign Up.</a>
-                       <p>  <a href="index.php">Back on main page!</a>
-                       </p>
+                        <a href="signup.php">Don't Have An Account? 
+                            <br>
+                            Sign Up.</a>
+
 
                     </div>
                 </div>
                 
             </section>
             </div>
-    <script src="../js/regex.js"></script>
-</body>
-</html>
+             <?php include 'footer.php' ?>
+

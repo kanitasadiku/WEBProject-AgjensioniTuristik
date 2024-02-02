@@ -36,7 +36,7 @@
             <h3>A po mendon të bësh një pushim?</h3>
             <h1>Bashkohuni me ne. Shijojeni pushimin tuaj!</h1>
             <p>Çdo minutë që shpenzoni është i vlefshëm, shpenzoni atë në mënyrën më të mirë!</p>
-            <button>Shiko ofertat tona!</button>
+            <a href="trending.php"><button>Shiko ofertat tona!</button> </a>
         </div>
     </section>
 
@@ -47,7 +47,7 @@
         <div class="research-text">
             <h1>Ekipi që qëndron pas kërkesave tuaja</h1>
             <p>Ekipi ynë është i motivuar nga kurioziteti për të ju ndihmuar në çdo aspekt të mundshëm që të ju ofrohet më e mira nga ne.</p>
-            <a href="#">Kontaktoni ekipin tonë &#10095;</a>
+            <a href="contact_us.php">Kontaktoni ekipin tonë &#10095;</a>
         </div>
     </div>
     
