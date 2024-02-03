@@ -1,6 +1,6 @@
 <?php 
-include_once '../database/databaseConnection.php';
-
+//include_once '../database/databaseConnection.php';
+include_once ("packages.php");
 class HotelRepository {
     private $connection;
 
@@ -18,7 +18,7 @@ class HotelRepository {
         $oferta2 = $hotel->getOferta2();
         $oferta3 = $hotel->getOferta3();
         $imazhi = $hotel->getImazhi();
-
+        try{
         $sql = "INSERT INTO hotelet (emri, pershkrimi, oferta1, oferta2, oferta3, imazhi) VALUES (?, ?, ?, ?, ?, ?)";
 
         $statement = $conn->prepare($sql);
@@ -26,6 +26,10 @@ class HotelRepository {
         $statement->execute([$emri, $pershkrimi, $oferta1, $oferta2, $oferta3, $imazhi]);
 
         echo "<script>alert('Hotel has been inserted successfully!');</script>";
+    }catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+   
     }
 
     function getAllHotels(){
@@ -50,7 +54,42 @@ class HotelRepository {
 
         return $hotel;
     }
+    function getHotelsByUserIds($userId) {
+        $conn = $this->connection;
 
+        $sql = "SELECT * FROM hotels WHERE addedbyuser = :userId";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($result) > 0) {
+            return $result;
+        } else {
+            return array();
+        }
+     
+    }
+
+    function addPackage($emri, $userId, $pershkrimi, $oferta1, $oferta2, $oferta3, $imazhi){
+        $sql = "INSERT INTO hotels (emri, addedbyuser, pershkrimi, oferta1, oferta2, oferta3, imazhi) VALUES (?, ?, ?, ?, ?)";
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(1, $emri, PDO::PARAM_STR);
+        $statement->bindParam(2, $userId, PDO::PARAM_INT);
+        $statement->bindParam(3, $pershkrimi, PDO::PARAM_STR);
+        $statement->bindParam(4, $oferta1, PDO::PARAM_STR);
+        $statement->bindParam(5, $oferta2, PDO::PARAM_STR);
+        $statement->bindParam(6, $oferta3, PDO::PARAM_STR);
+        $statement->bindParam(7,  $imazhi, PDO::PARAM_STR);
+        
+
+        if ($statement->execute()) {
+            return $this->connection->lastInsertId();
+        } else {
+            return false;
+        }
+    }
     function updateHotel($id, $emri, $pershkrimi, $oferta1, $oferta2, $oferta3, $imazhi){
          $conn = $this->connection;
 
@@ -64,16 +103,27 @@ class HotelRepository {
     } 
 
     function deleteHotel($id){
-        $conn = $this->connection;
+        // $conn = $this->connection;
 
-        $sql = "DELETE FROM hotelet WHERE id=?";
+        // $sql = "DELETE FROM hotelet WHERE id=?";
 
-        $statement = $conn->prepare($sql);
+        // $statement = $conn->prepare($sql);
 
-        $statement->execute([$id]);
+        // $statement->execute([$id]);
 
-        echo "<script>alert('Delete was successful');</script>";
-   } 
+        // echo "<script>alert('Delete was successful');</script>";
+        
+        $sql = "DELETE FROM hotels WHERE id = ?";
+        $statement = $this->connection->prepare($sql);
+        $statement->bindParam(1, $id, PDO::PARAM_INT);
+    
+        if ($statement->execute()) {
+            header("Location: Dashboard.php");
+            exit();
+        } else {
+            echo "Error deleting product: " . $statement->errorInfo()[2];
+        }
+    } 
 }
 
 ?>
