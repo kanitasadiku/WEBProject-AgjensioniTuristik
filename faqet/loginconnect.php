@@ -1,5 +1,5 @@
 <?php
-session_start(); // Fillimi i sesionit duhet të bëhet në fillim të skriptit
+session_start(); 
 
 require_once '../database/databaseConnection.php';
 

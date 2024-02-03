@@ -1,7 +1,6 @@
 <?php
 include_once("../database/databaseConnection.php");
 
-// Krijo një instancë të klases për lidhjen me bazën e të dhënave
 $dbConnection = new DatabaseConnection();
 
 try {

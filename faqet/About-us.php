@@ -1,5 +1,6 @@
 <?php include 'header.php' ?>
 
+
      <header>
         <h1>About Us</h1>
         <p>Your go-to choice for comfortable and reliable bus travel services.</p>

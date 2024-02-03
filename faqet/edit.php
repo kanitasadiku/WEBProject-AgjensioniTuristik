@@ -255,6 +255,7 @@ if(isset($_POST['add_package'])){
         $image = $_FILES['fileToUpload']['name'];
         
        $destination = '../img/' . $image;
+       
 
         if(file_exists($destination)){
             echo "<script>alert('File already exists. Choose a different file or name.');</script>";
