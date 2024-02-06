@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if(!isset($_SESSION['user_id'])){
+    header("HTTP/1.1 403 Forbidden");
+    exit("Forbidden Access");
+}
 
 include_once("../database/databaseConnection.php");
 include_once('usersrepository.php');
@@ -11,7 +15,7 @@ $dbConnection = DatabaseConnection::getInstance();
 $conn = $dbConnection->startConnection();
 $user = new UsersRepository($conn);
 $trending = new TrendingRespository();
-$packages = new HotelRepository();
+$hotel = new HotelRepository();
 
 
 if (isset($_SESSION['user_authenticated']) && $_SESSION['user_authenticated']) {
@@ -126,7 +130,7 @@ if (isset($_SESSION['user_authenticated']) && $_SESSION['user_authenticated']) {
         <div class="forma1">
         <h1 class="editP">Edit Profile</h1>
        
-        <form method="post" action="?action=update&user_id=<?= $userId ?>" class="form">
+        <form method="post" action="?action=update&id=<?= $userId ?>" class="form">
         <label for="new_name" class="labels">New Name:</label>
         <input type="text" class="inputi" name="new_name" value="<?= isset($userToEdit["name"]) ? $userToEdit["name"] : '' ?>">
         <label for="new_lname" class="labels">New Lastname:</label>
@@ -141,7 +145,30 @@ if (isset($_SESSION['user_authenticated']) && $_SESSION['user_authenticated']) {
     </form>
     </div>
     <br>
-    </body>
+    <div class="forms">
+        <div class="form1">
+            <h1 class="titulli">Add Trending Places</h1>
+                <form method="post" class="forma" action="?action=add_trending&user_id=<?= $userId ?>" enctype="multipart/form-data">
+                    <label class="labels" for="location">Location Name:</label>
+                    <input class="inputi" type="text" name="location" placeholder="Location name" required>
+                    <!-- <input class="inputi" type="text" location="location name" required> -->
+                        <!-- <select class="kategoria "name="location" required>
+                            <option value="Ulqin,Mal te Zi">Ulqin,Mal te Zi</option>
+                            <option value="Sarande,Shqiperi">Sarande,Shqiperi</option>
+                            <option value="Ksamil,Shqiperi">Ksamil,Shqiperi</option>
+                            <option value="Vlore, Shqiperi">Vlore, Shqiperi</option>
+                            <option value="Dhermi, Shqiperi">Dhermi, Shqiperi</option>
+                            <option value="Shengjin, Shqiperi">Shengjin, Shqiperi</option>
+                        </select> -->
+                    <label class="labels" for="image">Image:</label>
+                    <input class="labels" type="file" name="fileToUpload" id="fileToUpload" required>
+                    <input class="submit" type="submit" name="add_trending" value="Add Trending Places">
+                </form>
+        </div>
+   </div>
+   <br>
+
+   </body>
     <body>
     <br>
     <?php
@@ -165,7 +192,7 @@ if (isset($_SESSION['user_authenticated']) && $_SESSION['user_authenticated']) {
                         <input class="inputi" type="text" name="oferta3" required>
                         <label class="labels" for="imazhi">Image:</label>
                         <input class="labels" type="file" name="fileToUpload" id="fileToUpload" required>
-                        <input class="submit" type="submit" name="add_hotels" value="Add Hotel">
+                        <input class="submit" type="submit" name="add_hotel" value="Add Hotel">
                     </form>
         </div>
    </div>
@@ -173,33 +200,6 @@ if (isset($_SESSION['user_authenticated']) && $_SESSION['user_authenticated']) {
 }
 ?> 
    <br>
-</body>
-
-<body>
-    <br>
-
-   <div class="forms">
-        <div class="form1">
-            <h1 class="titulli">Add Trending Places</h1>
-                <form method="post" class="forma" action="?action=add_trending&user_id=<?= $userId ?>" enctype="multipart/form-data">
-                    <label class="labels" for="location">Location Name:</label>
-                    <input class="inputi" type="text" location="location name" required>
-                        <!-- <select class="kategoria "name="location" required>
-                            <option value="Ulqin,Mal te Zi">Ulqin,Mal te Zi</option>
-                            <option value="Sarande,Shqiperi">Sarande,Shqiperi</option>
-                            <option value="Ksamil,Shqiperi">Ksamil,Shqiperi</option>
-                            <option value="Vlore, Shqiperi">Vlore, Shqiperi</option>
-                            <option value="Dhermi, Shqiperi">Dhermi, Shqiperi</option>
-                            <option value="Shengjin, Shqiperi">Shengjin, Shqiperi</option>
-                        </select> -->
-                    <label class="labels" for="image">Image:</label>
-                    <input class="labels" type="file" name="fileToUpload" id="fileToUpload" required>
-                    <input class="submit" type="submit" name="add_trending" value="Add Trending Places">
-                </form>
-        </div>
-   </div>
-
-<br>
 </body>
 </html>
 
@@ -209,7 +209,8 @@ if(isset($_POST['add_trending'])){
 
     //per mos me pas undefined index notices, perdorim isset
     $location = isset($_POST['location']) ? $_POST['location'] : '';
-  
+    // $location = $_POST['location'];
+    
 
 
     if(isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === 0) {
@@ -217,18 +218,18 @@ if(isset($_POST['add_trending'])){
 
        $destination = '../img/' . $image;
 
-        if(file_exists($destination)){
+        if(is_file($destination)){
             echo "<script>alert('File already exists. Choose a different file or name.');</script>";
         } 
         else{
             if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $destination)){
                 try {
-                    $image = 'img/' . $image;
+                    $imageUrl = 'img/' . $image;
 
-                    if($trending->addTrending($image, $userId, $location)) {
-                        echo "<script>alert('Therapist added sucessfully!');</script>";
+                    if($trending->addTrending($imageUrl, $userId, $location)) {
+                        echo "<script>alert('Trending places added sucessfully!');</script>";
                     }else{
-                        echo "<script>alert('There was a problem adding your therapist!');</script>";
+                        echo "<script>alert('There was a problem adding your trending places!');</script>";
                     }
                 }catch(Exception $e){
                     echo "An error occurred: " . $e->getMessage();
@@ -241,64 +242,129 @@ if(isset($_POST['add_trending'])){
     } 
 }
 
-if(isset($_POST['add_package'])){
-
-    //per mos me pas undefined index notices, perdorim isset
-     $emri = isset($_POST['emri']) ? $_POST['emri'] : '';
-     $pershkrimi = isset($_POST['pershkrimi']) ? $_POST['pershkrimi'] : '';
-     $oferta1 = isset($_POST['oferta1']) ? $_POST['oferta1'] : '';
-     $oferta2 = isset($_POST['oferta2']) ? $_POST['oferta2'] : '';
-     $oferta3 = isset($_POST['oferta3']) ? $_POST['oferta3'] : '';
 
 
-    if(isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === 0) {
-        $image = $_FILES['fileToUpload']['name'];
+    if(isset($_POST['add_package'])){
+
+        //per mos me pas undefined index notices, perdorim isset
+        $emri = isset($_POST['emri']) ? $_POST['emri'] : '';
+        $pershkrimi = isset($_POST['pershkrimi']) ? $_POST['pershkrimi'] : '';
+        $oferta1 = isset($_POST['oferta1']) ? $_POST['oferta1'] : '';
+        $oferta2 = isset($_POST['oferta2']) ? $_POST['oferta2'] : '';
+        $oferta3 = isset($_POST['oferta3']) ? $_POST['oferta3'] : '';
+
+
+        if(isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === 0) {
+            $image = $_FILES['fileToUpload']['name'];
+            
+        $destination = '../img/' . $image;
         
-       $destination = '../img/' . $image;
 
-        if(file_exists($destination)){
-            echo "<script>alert('File already exists. Choose a different file or name.');</script>";
-        } 
-        else{
-            if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $destination)){
-                try {
-                    $image = 'img/' . $image;
+            if(file_exists($destination)){
+                echo "<script>alert('File already exists. Choose a different file or name.');</script>";
+            } 
+            else{
+                if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $destination)){
+                    try {
+                        $image = 'img/' . $image;
 
-                    if($packages->addPackage($emri, $userId, $pershkrimi, $oferta1, $oferta2, $oferta3, $imazhi)) {
-                        echo "<script>alert('Therapist added sucessfully!');</script>";
-                    }else{
-                        echo "<script>alert('There was a problem adding your therapist!');</script>";
+                        if($packages->addPackage($emri, $userId, $pershkrimi, $oferta1, $oferta2, $oferta3, $imagePath)) {
+                            echo "<script>alert('Trending added sucessfully!');</script>";
+                        }else{
+                            echo "<script>alert('There was a problem adding your trending!');</script>";
+                        }
+                    }catch(Exception $e){
+                        echo "An error occurred: " . $e->getMessage();
                     }
-                }catch(Exception $e){
-                    echo "An error occurred: " . $e->getMessage();
+                }
+                else{
+                    echo "<script>alert('File upload failed.');</script>";
                 }
             }
-            else{
-                echo "<script>alert('File upload failed.');</script>";
-            }
-        }
-    } 
-}
+        } 
+    }
 
 
+    // if (isset($_POST['add_hotel'])) {
+    //     // Për të shmangur mesazhet e gabimit "undefined index", perdorim isset
+    //     $emri = isset($_POST['emri']) ? $_POST['emri'] : '';
+    //     $pershkrimi = isset($_POST['pershkrimi']) ? $_POST['pershkrimi'] : '';
+    //     $oferta1 = isset($_POST['oferta1']) ? $_POST['oferta1'] : '';
+    //     $oferta2 = isset($_POST['oferta2']) ? $_POST['oferta2'] : '';
+    //     $oferta3 = isset($_POST['oferta3']) ? $_POST['oferta3'] : '';
+    
+    //     // Shfaq vlerat për debug
+    //     // echo '<pre>';
+    //     // var_dump($emri, $pershkrimi, $oferta1, $oferta2, $oferta3);
+    //     // echo '</pre>';
+    
+    //     if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === 0) {
+    //         $image = $_FILES['fileToUpload']['name'];
+    //         $destination = '../img/' . $image;
+    
+    //         if (file_exists($destination)) {
+    //             echo "<script>alert('File already exists. Choose a different file or name.');</script>";
+    //         } else {
+    //             if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $destination)) {
+    //                 try {
+    //                     $image = 'img/' . $image;
+                        
+    //                     if ($packages->addPackage($emri, $userId, $pershkrimi, $oferta1, $oferta2, $oferta3, $imagePath)) {
+    //                         echo "<script>alert('Trending added successfully!');</script>";
+    //                     } else {
+    //                         echo "<script>alert('There was a problem adding your trending!');</script>";
+    //                     }
+    //                 } catch (Exception $e) {
+    //                     echo "An error occurred: " . $e->getMessage();
+    //                 }
+    //             } else {
+    //                 echo "<script>alert('File upload failed.');</script>";
+    //             }
+    //         }
+    //     }
+    // }
+    
+
+
+// if (isset($_POST['update_user'])) {
+//     $newEmail = isset($_POST['new_email']) ? $_POST['new_email'] : '';
+
+//     if (!empty($newEmail)) {
+//         $result = $user->updateUser($userId, $newEmail);
+
+//         if($result){
+//             echo "<p>Email updated successfully.</p>";
+//         }
+//         else{
+//             echo "<p>Failed to update email.</p>";
+//         }
+//     }
+//     else{
+//         echo "<p>You are not logged in.</p>";
+//     }
+// }
 
 if (isset($_POST['update_user'])) {
     $newEmail = isset($_POST['new_email']) ? $_POST['new_email'] : '';
+    $newPhone = isset($_POST['new_phone']) ? $_POST['new_phone'] : '';
 
-    if (!empty($newEmail)) {
-        $result = $user->updateUser($userId, $newEmail);
+    if (!empty($newEmail)&& !empty($newPhone)) {
+        // Assuming other parameters (name, lname, phone, password) remain unchanged
+        $result = $user->updateUser($userId, $newName, $newLname, $newEmail, $newPhone);
 
         if($result){
-            echo "<p>Email updated successfully.</p>";
+            echo "<p>Email and phone updated successfully.</p>";
         }
         else{
-            echo "<p>Failed to update email.</p>";
+            echo "<p>Failed to update email and phone.</p>";
         }
     }
     else{
         echo "<p>You are not logged in.</p>";
     }
 }
+
+
 
 
 ?>

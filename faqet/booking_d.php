@@ -1,7 +1,6 @@
 <?php
 include_once("../database/databaseConnection.php");
 
-// Krijo një instancë të klases për lidhjen me bazën e të dhënave
 $dbConnection = new DatabaseConnection();
 
 try {
@@ -32,12 +31,25 @@ try {
   // Ekzekuto query-në
   $stmt->execute();
 
-  echo "Rezervimi u krye me sukses!";
+//   echo "Rezervimi u krye me sukses!";
+// } catch (PDOException $e) {
+//   // Kap gabimet PDO nëse ndodh ndonjë
+//   die("Gabim PDO: " . $e->getMessage());
+// } finally {
+//   // Mbyll lidhjen me bazën e dhënave në fund të kodit
+//   $conn = null;
+// }
+// 
+  // header("Location: booking.php");
+  //   exit(); // Siguro që nuk ekzekutohet kod pas ridrejtimi
+  $success_message = "Rezervimi u krye me sukses!";
+    header("Location: booking.php?success_message=" . urlencode($success_message));
+    exit();
 } catch (PDOException $e) {
-  // Kap gabimet PDO nëse ndodh ndonjë
-  die("Gabim PDO: " . $e->getMessage());
+    // Kap gabimet PDO nëse ndodh ndonjë
+    die("Gabim PDO: " . $e->getMessage());
 } finally {
-  // Mbyll lidhjen me bazën e dhënave në fund të kodit
-  $conn = null;
+    // Mbyll lidhjen me bazën e dhënave në fund të kodit
+    $conn = null;
 }
 ?>

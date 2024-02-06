@@ -19,6 +19,23 @@
             <li><a href="booking.php"> Booking </a></li>
             <li><a href="review.php"> Review </a></li>
             <li><a href="contact_us.php"> Contact us </a></li>
-            <li><a href="login.php"> <i class="fa-solid fa-user"></i> </a></li>
+            <!-- <li><a href="login.php"> <i class="fa-solid fa-user"></i> </a></li> -->
+             <?php
+
+                   if (isset($_SESSION['user_authenticated']) && $_SESSION['user_authenticated']) {
+                        echo '<li><a href=" dashboard.php">Dashboard</a></li>';
+                        echo '<li><a href=" logout.php">Logout</a></li>';
+                        echo'<li>';
+                       // echo '<img src="Images/PersonLogo" alt="Person Logo" style="width: 25px; height: 25px; margin-bottom: -5px;">';
+                        echo '<a href=" edit.php"><i class="fa fa-user"></i>' . $_SESSION['user_email'] . '</a>';
+                        echo '</li>';
+                    } else {
+                        echo '<li>';
+                      //  echo '<img src="Images/PersonLogo" alt="Person Logo" style="width: 25px; height: 25px; margin-bottom: -5px;">';
+                        echo '<a href="login.php">Log in</a>';
+                        echo '</li>';
+                    }
+               
+            ?>
         </ul>
      </nav>

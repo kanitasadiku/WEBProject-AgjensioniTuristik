@@ -1,28 +1,7 @@
 <?php 
+session_start();
 include_once '../database/databaseConnection.php';
-
-// Klasa për të manipuluar të dhënat e hoteleve
-class HotelRepository{
-    private $connection;
-
-    function __construct(){
-        $conn = new DatabaseConnection;
-        $this->connection = $conn->startConnection();
-    }
-
-    function getAllHotels(){
-        $conn = $this->connection;
-
-        $sql = "SELECT * FROM hotelet";
-
-        $statement = $conn->query($sql);
-        $hotels = $statement->fetchAll();
-
-        return $hotels;
-    }
-}
-
-
+include_once("HotelRepository.php");
 $hotelRepository = new HotelRepository;
 
 $hotels = $hotelRepository->getAllHotels();

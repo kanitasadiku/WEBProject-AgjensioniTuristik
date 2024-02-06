@@ -40,7 +40,22 @@ include_once ("../database/databaseConnection.php");
         </div>
         
     </section>
-           
+
+    <!-- // Kontrollo nëse URL përmban mesazhin e suksesit dhe shfaq atë nëse ka
+    // if (isset($_GET['success_message'])) {
+    //     $success_message = htmlspecialchars($_GET['success_message']);
+    //     echo "<p>$success_message</p>";
+    // 
+    //  -->
+    <?php
+    // Kontrollo nëse URL përmban mesazhin e suksesit dhe shfaq atë nëse ka
+    if (isset($_GET['success_message'])) {
+        $success_message = htmlspecialchars($_GET['success_message']);
+        // Display the success message using JavaScript alert
+        echo "<script>alert('$success_message');</script>";
+    }
+?>
+
 <?php include 'footer.php'; ?>
 
    

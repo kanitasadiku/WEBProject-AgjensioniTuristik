@@ -19,7 +19,7 @@ class HotelRepository {
         $oferta3 = $hotel->getOferta3();
         $imazhi = $hotel->getImazhi();
         try{
-        $sql = "INSERT INTO hotelet (emri, pershkrimi, oferta1, oferta2, oferta3, imazhi) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO hotelet (emri, pershkrimi, oferta1, oferta2, oferta3, imazhi,addedbyuser) VALUES (?, ?, ?, ?, ?, ?,?)";
 
         $statement = $conn->prepare($sql);
 
@@ -72,8 +72,8 @@ class HotelRepository {
      
     }
 
-    function addPackage($emri, $userId, $pershkrimi, $oferta1, $oferta2, $oferta3, $imazhi){
-        $sql = "INSERT INTO hotels (emri, addedbyuser, pershkrimi, oferta1, oferta2, oferta3, imazhi) VALUES (?, ?, ?, ?, ?)";
+    public function addPackage($emri, $userId, $pershkrimi, $oferta1, $oferta2, $oferta3, $imazhi, $addedbyuser){
+        $sql = "INSERT INTO hotels (emri, addedbyuser, pershkrimi, oferta1, oferta2, oferta3, imazhi) VALUES ( ?, ?, ?, ?,?,?,?)";
         $statement = $this->connection->prepare($sql);
         $statement->bindParam(1, $emri, PDO::PARAM_STR);
         $statement->bindParam(2, $userId, PDO::PARAM_INT);
@@ -82,6 +82,7 @@ class HotelRepository {
         $statement->bindParam(5, $oferta2, PDO::PARAM_STR);
         $statement->bindParam(6, $oferta3, PDO::PARAM_STR);
         $statement->bindParam(7,  $imazhi, PDO::PARAM_STR);
+
         
 
         if ($statement->execute()) {
@@ -102,7 +103,7 @@ class HotelRepository {
          echo "<script>alert('Update was successful');</script>";
     } 
 
-    function deleteHotel($id){
+    function deleteHotel($hotelid){
         // $conn = $this->connection;
 
         // $sql = "DELETE FROM hotelet WHERE id=?";
@@ -121,7 +122,7 @@ class HotelRepository {
             header("Location: Dashboard.php");
             exit();
         } else {
-            echo "Error deleting product: " . $statement->errorInfo()[2];
+            echo "Error deleting package: " . $statement->errorInfo()[2];
         }
     } 
 }

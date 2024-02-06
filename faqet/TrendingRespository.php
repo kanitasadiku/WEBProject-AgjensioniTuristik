@@ -50,40 +50,24 @@ class TrendingRespository {
 
         return $trending;
     }
-    // function getTrendingByUserIds($userId) {
-    //     $conn = $this->connection;
-
-    //     $sql = "SELECT * FROM trending WHERE addedbyuser = :userId";
-    //     $stmt = $conn->prepare($sql);
-    //     $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-    //     $stmt->execute();
-
-    //     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    //     if (count($result) > 0) {
-    //         return $result;
-    //     } else {
-    //         return array();
-    //     }
-
-    // }
-    public function getTrendingByUserIds($userId){
+   
+    public function getTrendingByUserIds($userId) {
         $sql = "SELECT * FROM trending WHERE addedbyuser = :userId";
         $statement = $this->connection->prepare($sql);
-        $statement->bindParam(1, $userId, PDO::PARAM_INT);
+        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
         $statement->execute();
-
+    
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+    
         if (!empty($result)) {
             return $result;
         } else {
             return array();
         }
-    
     }
+    
     function addTrending($image, $userId, $location){
-        $sql = "INSERT INTO tickets (image, addedbyuser, location ) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO trending (image, addedbyuser, location ) VALUES (?, ?, ?)";
         $statement = $this->connection->prepare($sql);
         $statement->bindParam(1, $image, PDO::PARAM_STR);
         $statement->bindParam(2, $userId, PDO::PARAM_INT);
@@ -96,8 +80,8 @@ class TrendingRespository {
             return false;
         }
     }
-    function updateTicket($id, $image, $location){
-        $sql = "UPDATE tickets SET image = ?, location=? WHERE id=?";
+    function updateTrending($id, $image, $location){
+        $sql = "UPDATE trending SET image = ?, location=? WHERE id=?";
         $statement = $this->connection->prepare($sql);
         $statement->bindParam(1, $image, PDO::PARAM_STR);
         $statement->bindParam(2, $location, PDO::PARAM_STR);
@@ -105,19 +89,9 @@ class TrendingRespository {
         return $statement->execute();
     }
 
-    // function updateTrending($id, $location, $image){
-    //      $conn = $this->connection;
+    
 
-    //      $sql = "UPDATE trending SET location=?, image=? WHERE id=?";
-
-    //      $statement = $conn->prepare($sql);
-
-    //      $statement->execute([$location, $image, $id]);
-
-    //      echo "<script>alert('Update was successful');</script>";
-    // } 
-
-    function deleteTrending($id){
+    function deleteTrending($trendingid){
         $sql = "DELETE FROM trending WHERE id = ?";
     $statement = $this->connection->prepare($sql);
     $statement->bindParam(1, $id, PDO::PARAM_INT);
@@ -130,18 +104,4 @@ class TrendingRespository {
     }
 }
 }
-//         $conn = $this->connection;
-
-//         $sql = "DELETE FROM trending WHERE id=?";
-
-//         $statement = $conn->prepare($sql);
-
-//         $statement->execute([$id]);
-
-//         echo "<script>alert('Delete was successful');</script>";
-//    } 
-// }
-
-
-
 ?>
