@@ -1,3 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+.titulli {
+    text-align: center;
+}
+
+/* User Dashboard Styles */
+.permbajtja-dashboard {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.emri {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.mbiemri {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.permbajtja {
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.buttons a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Hotel Box Styles */
+.hotel-box {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.hotel-box img {
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.hotel-info {
+    flex-grow: 1;
+}
+
+.hotel-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.hotel-description {
+    margin-bottom: 10px;
+}
+
+.offers-descrition {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Trending Places Styles */
+.card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.location {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.location i {
+    margin-right: 5px;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer p {
+    margin: 0;
+}
+
+    </style>
+</head>
+<body>
 <?php
 session_start();
 if(!isset($_SESSION['user_id'])){
